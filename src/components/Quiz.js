@@ -8,7 +8,7 @@ export default function Quiz(props){
     const quizData = props.Data.map(quiz=>    {  
         return (
         <div key={nanoid()} className="quiz">
-            <div className="question">{quiz.question}</div>
+            <div className="question" dangerouslySetInnerHTML={{__html:quiz.question}} />
             <div className="btnContainer">
                 {
                 quiz.options.map(opt => 
@@ -26,7 +26,7 @@ export default function Quiz(props){
                                             onClick={()=>props.handleAnswerClick(quiz.id, opt.id, submitAnswer)} 
                                             key={opt.id}
                                         >
-                                            {opt.value}
+                                            <div dangerouslySetInnerHTML={{__html:opt.value}} />
                                         </button>
                                 )
                 }

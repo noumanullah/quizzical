@@ -22,39 +22,39 @@ function App() {
     return array
   }
 
-  function createData(){
-    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy")
-    .then(res=> res.json())
-    .then(data => {
-      setData(Data)
-      const cleanData = data.results.map(quiz =>{
-        const arrOptions = []
-        arrOptions.push(quiz.correct_answer, ...quiz.incorrect_answers)
-        const arrOptionsMod = arrOptions.map(opt=>{
-          return {
-            id: nanoid(),
-            value: opt,
-            isSelected: false
-          }
-        })
+  // function createData(){
+  //   fetch("https://opentdb.com/api.php?amount=5&difficulty=easy")
+  //   .then(res=> res.json())
+  //   .then(data => {
+  //     setData(Data)
+  //     const cleanData = data.results.map(quiz =>{
+  //       const arrOptions = []
+  //       arrOptions.push(quiz.correct_answer, ...quiz.incorrect_answers)
+  //       const arrOptionsMod = arrOptions.map(opt=>{
+  //         return {
+  //           id: nanoid(),
+  //           value: opt,
+  //           isSelected: false
+  //         }
+  //       })
   
-        return (
-          {
-            id: nanoid(),
-            question: quiz.question,
-            correct_answer: quiz.correct_answer,
-            options: shuffle(arrOptionsMod)
-          }
-        )
-      })
+  //       return (
+  //         {
+  //           id: nanoid(),
+  //           question: quiz.question,
+  //           correct_answer: quiz.correct_answer,
+  //           options: shuffle(arrOptionsMod)
+  //         }
+  //       )
+  //     })
 
-      setQuizData(cleanData)
-    })
-
-    
+  //     setQuizData(cleanData)
+  //   })
 
     
-  }
+
+    
+  // }
 
   function handleOptionSelection(questionId, optionId, submitAnswer){
     if(submitAnswer)
@@ -78,11 +78,41 @@ function App() {
 
   function playAgain(){
     setIsQuizStarted(false)
-    setQuizData(createData())
+    setData([])
   }
 
   React.useEffect(()=>{
-    createData()
+    
+    async function getAPIData(){
+      const res = await fetch("https://opentdb.com/api.php?amount=5&difficulty=easy")
+      const data = await res.json()
+
+      const cleanData = data.results.map(quiz =>{
+        const arrOptions = []
+        arrOptions.push(quiz.correct_answer, ...quiz.incorrect_answers)
+        const arrOptionsMod = arrOptions.map(opt=>{
+          return {
+            id: nanoid(),
+            value: opt,
+            isSelected: false
+          }
+        })
+  
+        return (
+          {
+            id: nanoid(),
+            question: quiz.question,
+            correct_answer: quiz.correct_answer,
+            options: shuffle(arrOptionsMod)
+          }
+        )
+      })
+
+      setQuizData(cleanData)
+    }
+
+    getAPIData()
+
   }, [Data])
   return (
     <div className="App topImage">
