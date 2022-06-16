@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
 import Main from "./components/Main"
-import Data from "./data"
+// import Data from "./data"
 import Quiz from "./components/Quiz"
 import {nanoid} from "nanoid"
 
 function App() {
   const [isQuizStarted, setIsQuizStarted] = React.useState(false)
-  const [quizData, setQuizData] = React.useState(createData())
+  const [quizData, setQuizData] = React.useState([])
+  const [Data, setData] = React.useState({})
 
   function bthQuizStart(){
     setIsQuizStarted(true)  
@@ -22,41 +23,45 @@ function App() {
   }
 
   function createData(){
-    const cleanData = Data.results.map(quiz =>{
-      const arrOptions = []
-      arrOptions.push(quiz.correct_answer, ...quiz.incorrect_answers)
-      const arrOptionsMod = arrOptions.map(opt=>{
-        return {
-          id: nanoid(),
-          value: opt,
-          isSelected: false
-        }
+    fetch("https://opentdb.com/api.php?amount=5&difficulty=easy")
+    .then(res=> res.json())
+    .then(data => {
+      setData(Data)
+      const cleanData = data.results.map(quiz =>{
+        const arrOptions = []
+        arrOptions.push(quiz.correct_answer, ...quiz.incorrect_answers)
+        const arrOptionsMod = arrOptions.map(opt=>{
+          return {
+            id: nanoid(),
+            value: opt,
+            isSelected: false
+          }
+        })
+  
+        return (
+          {
+            id: nanoid(),
+            question: quiz.question,
+            correct_answer: quiz.correct_answer,
+            options: shuffle(arrOptionsMod)
+          }
+        )
       })
 
-      return (
-        {
-          id: nanoid(),
-          question: quiz.question,
-          options: shuffle(arrOptionsMod)
-        }
-      )
+      setQuizData(cleanData)
     })
 
-    return cleanData
+    
+
+    
   }
 
-  //console.log(quizData)
-
-  // React.useEffect(()=>{
-  //   const arrData = createData()
-  //   setQuizData(arrData)
-  //   console.log("Iam here")
-  // },[quizData])
-
-  function handleOptionSelection(questionId, optionId){
+  function handleOptionSelection(questionId, optionId, submitAnswer){
+    if(submitAnswer)
+      return
     const updatedData = quizData.map(question => {
       if(question.id === questionId){
-        
+
         const opts = question.options.map(op=>{
           return {...op, isSelected: op.id === optionId ? true : false} 
         })
@@ -71,11 +76,19 @@ function App() {
     setQuizData(updatedData)
   }
 
+  function playAgain(){
+    setIsQuizStarted(false)
+    setQuizData(createData())
+  }
+
+  React.useEffect(()=>{
+    createData()
+  }, [Data])
   return (
     <div className="App topImage">
       { isQuizStarted === false ? 
         <Main handleClick={bthQuizStart} /> :
-        <Quiz Data={quizData} handleAnswerClick={handleOptionSelection} />
+        <Quiz Data={quizData} handleAnswerClick={handleOptionSelection} handlePlayAgain={playAgain} />
       }
     </div>
   );

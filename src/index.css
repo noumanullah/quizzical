@@ -4,8 +4,8 @@ body {
   text-align: center;
   font-family: 'Inter', sans-serif;
   background-image: url('./images/bottom.png');
-    background-repeat: no-repeat;
-    background-position-y: bottom;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
 }
 
 code {
@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-.btnStartQuiz{
+.btnStartQuiz {
   background: #4D5B9E;
   border-radius: 15px;
   width: 193px;
@@ -29,46 +29,48 @@ code {
 
   color: #F5F7FB;
 }
-.headerText{
+
+.headerText {
   font-family: 'Karla';
-font-style: normal;
-font-weight: 700;
-font-size: 31.25px;
-line-height: 37px;
-text-align: center;
-color: #293264;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 31.25px;
+  line-height: 37px;
+  text-align: center;
+  color: #293264;
 }
 
-.firstContent{
+.firstContent {
   font-family: 'Inter';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 19px;
-text-align: center;
-color: #293264;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #293264;
 }
 
-.question{
+.question {
   font-family: 'Karla';
-font-style: normal;
-font-weight: 700;
-font-size: 16px;
-line-height: 19px;
-/* identical to box height */
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  /* identical to box height */
 
 
-color: #293264;
+  color: #293264;
 }
-.quiz{
+
+.quiz {
   text-align: left;
   padding: 0 90px 0 90px;
 }
 
-.btnQuiz{
+.btnQuiz {
   box-sizing: border-box;
   min-width: 65.92px;
-  height: 20.65px;
+  min-height: 20.65px;
   border: 0.794239px solid #4D5B9E;
   border-radius: 7.94239px;
   background: #F5F7FB;
@@ -84,58 +86,130 @@ color: #293264;
   color: #293264;
 }
 
-.btnQuizSelected{
+.btnQuizSelected {
   box-sizing: border-box;
   min-width: 65.92px;
-  height: 20.65px;
+  min-height: 20.65px;
   /* border: 0.794239px solid #4D5B9E; */
   border-radius: 7.94239px;
   background: #D6DBF5;
   border-radius: 7.94239px;
   border-color: transparent;
   font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 10.24px;
-line-height: 12px;
-text-align: center;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10.24px;
+  line-height: 12px;
+  text-align: center;
 
-color: #293264;
+  color: #293264;
 }
 
-.btnContainer{
+.btnContainer {
   display: flex;
   gap: 20px;
-  margin-top: 10px;;
+  margin-top: 10px;
+  ;
 }
 
-.separator{
+.separator {
   border: 0.794239px solid #DBDEF0;
 }
 
-.btnSubmit{
-width: 120px;
-height: 35px;
-background: #4D5B9E;
-border-radius: 10px;
-border-color: transparent;
-color: #F5F7FB;
+.btnSubmit {
+  width: 120px;
+  height: 35px;
+  background: #4D5B9E;
+  border-radius: 10px;
+  border-color: transparent;
+  color: #F5F7FB;
 
 }
 
-.result{
+.result {
   font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 12.8px;
-line-height: 15px;
-text-align: center;
-color: #293264;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12.8px;
+  line-height: 15px;
+  text-align: center;
+  color: #293264;
 }
 
-.resultContainer{
+.resultContainer {
   margin-top: 10px;
   display: inline-flex;
   align-items: center;
   gap: 20px;
+}
+
+/* .correctAnswerSelectedStyle{
+  background-color: #94D7A2;;
+  color: #293264;
+  border-color: transparent;
+  opacity: 0.5;
+} */
+
+.btnQuizFreez {
+  box-sizing: border-box;
+  min-width: 65.92px;
+  min-height: 20.65px;
+  border: 0.794239px solid #4D5B9E;
+  border-radius: 7.94239px;
+  background: #F5F7FB;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10.24px;
+  line-height: 12px;
+  /* identical to box height */
+  text-align: center;
+
+  color: #293264;
+  opacity: 0.5;
+}
+
+
+.btnQuizSelectedAfterSubmit {
+  background: #94D7A2;
+
+
+  min-width: 65.92px;
+  min-height: 20.65px;
+  /* border: 0.794239px solid #4D5B9E; */
+  border-radius: 7.94239px;
+
+  border-radius: 7.94239px;
+  border-color: transparent;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10.24px;
+  line-height: 12px;
+  text-align: center;
+
+  color: #293264;
+}
+
+.btnQuizActualCorrectAnswer {
+  background: #94D7A2;
+
+
+  min-width: 65.92px;
+  min-height: 20.65px;
+  /* border: 0.794239px solid #4D5B9E; */
+  border-radius: 7.94239px;
+
+  border-radius: 7.94239px;
+  border-color: transparent;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10.24px;
+  line-height: 12px;
+  text-align: center;
+
+  color: #293264;
+  opacity: 0.5;
 }
