@@ -143,13 +143,6 @@ code {
   gap: 20px;
 }
 
-/* .correctAnswerSelectedStyle{
-  background-color: #94D7A2;;
-  color: #293264;
-  border-color: transparent;
-  opacity: 0.5;
-} */
-
 .btnQuizFreez {
   box-sizing: border-box;
   min-width: 65.92px;

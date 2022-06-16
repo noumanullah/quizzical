@@ -3,7 +3,6 @@ import {nanoid} from "nanoid"
 
 export default function Quiz(props){
     const [submitAnswer, setSubmitAnswer] = React.useState(false)
-    //const [result, setResult] = React.useState("")
 
     const quizData = props.Data.map(quiz=>    {  
         return (
